@@ -1,17 +1,60 @@
+require('dotenv').config();
 const expect = require('chai').expect;
 const core = require('../src/core');
 
 describe("preprocess-cli", function() {
      describe("processFileAsync()", function() {
           it("should fail when only sourceFile is specified", function(done) {
-               core.processFileAsync("index.html", "", process.env, function(error) {
-                    if (error) {
-                         expect(error).to.be.an(error);
-                         done();
-                    }
+               core.processFileAsync("./test/html/index.html", "")
+                    .then(result => {
 
-                    expect(true)
-               });
+                    })
+                    .catch(error => {
+                         expect(error).to.be.an('error');
+                         done();
+                    });
           });
+          it("should fail when only destFile is specified", function(done) {
+               core.processFileAsync("", "./test/output/index.html")
+                    .then(result => {
+
+                    })
+                    .catch(error => {
+                         expect(error).to.be.an('error');
+                         done();
+                    });
+          });
+          it("should fail if it the sourceFile is not found", function(done) {
+               core.processFileAsync("./html/newIndex.html", "./test/output/newIndex.html")
+                    .then(result => {
+
+                    })
+                    .catch(error => {
+                         expect(error).to.be.an('error');
+                         done();
+                    });
+          });
+          it("should process the sourceFile correctly and output it to a destFile", function(done) {
+               core.processFileAsync("./test/html/index.html", "./test/output/index.html")
+                    .then(result => {
+                         expect(result).to.equal("Success");
+                         done();
+                    })
+                    .catch(error => {
+                         done(error);
+                    });
+          });
+          it("should process the sourceFile correctly using a context object", function(done) {
+               let context = JSON.parse('{"DEBUG": true}');
+
+               core.processFileAsync("./test/html/indexContext.html", "./test/output/indexContext.html", context)
+                    .then(result => {
+                         expect(result).to.equal("Success");
+                         done();
+                    })
+                    .catch(error => {
+                         done(error);
+                    });
+          })
      })
 });
