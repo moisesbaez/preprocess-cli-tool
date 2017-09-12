@@ -1,0 +1,17 @@
+const expect = require('chai').expect;
+const core = require('../src/core');
+
+describe("preprocess-cli", function() {
+     describe("processFileAsync()", function() {
+          it("should fail when only sourceFile is specified", function(done) {
+               core.processFileAsync("index.html", "", process.env, function(error) {
+                    if (error) {
+                         expect(error).to.be.an(error);
+                         done();
+                    }
+
+                    expect(true)
+               });
+          });
+     })
+});
