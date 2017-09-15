@@ -1,9 +1,8 @@
-require('dotenv').config();
 const core = require('./core');
 const chalk = require('chalk');
 
 const argv = require('yargs')
-     .usage('Usage: $0 <options> <args>')
+     .usage('Usage: $0 -f <source> -d <destination> [--option <argument>]...')
      .help('h')
      .alias('h', 'help')
      .option('f', {
@@ -33,7 +32,7 @@ const argv = require('yargs')
      })
      .version()
      .alias('v', 'version')
-     .demandOption(['f', 'd'], chalk.red('Please provide both srcFile (-f) and destFile (-d) arguments to run this tool'))
+     .demandOption(['f', 'd'], chalk.red('Please provide both source (-f) and destination (-d) arguments to run this tool'))
      .argv;
 
 
