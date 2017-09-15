@@ -1,6 +1,6 @@
 {
   "name": "preprocess-cli-tool",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A command-line tool for preprocess",
   "repository": {
     "type": "git",
@@ -17,6 +17,16 @@
   },
   "author": "Moises Baez",
   "license": "MIT",
+  "keywords": [
+    "cli",
+    "css",
+    "exclude",
+    "html",
+    "include",
+    "js",
+    "preprocess",
+    "process"
+  ],
   "dependencies": {
     "chalk": "^2.1.0",
     "preprocess": "^3.1.0",
